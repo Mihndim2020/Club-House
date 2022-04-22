@@ -10,7 +10,7 @@ var UserSchema = new Schema(
       user_name: {type: String, maxLength: 100}, // if the username is not provided, use the email address.
       password: {type: String, required: true, maxLength: 100},
       posts: [{type: Schema.Types.ObjectId, ref: 'Post'}],
-      member_status: {type: String, required: true, enum: ['Normal', 'admin'], default: 'Normal'}  
+      member_status: {type: String, required: true, enum: ['Normal', 'Admin'], default: 'Normal'}  
     }
   );
 
