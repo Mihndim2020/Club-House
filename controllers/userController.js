@@ -1,9 +1,10 @@
 var User = require('../models/user');
 
 const { body,validationResult } = require('express-validator');
+const res = require('express/lib/response');
 
 exports.index = function(req, res) {
-    res.send('NOT IMPLEMENTED: Site Home Page');
+    res.render("index", { title: 'Home Page', user: req.user });
 };
 
 // Display list of all users.
@@ -65,6 +66,10 @@ exports.user_create_post = [
     }
 ];
 
+// Handle User login on POST
+exports.user_login_post = function(req, res) {
+    res.send('Not implemented yet');
+};
 
 // Display User delete form on GET.
 exports.user_delete_get = function(req, res) {

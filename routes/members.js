@@ -16,6 +16,9 @@ router.get('/user/create', user_controller.user_create_get);
 // POST request for creating User.
 router.post('/user/create', user_controller.user_create_post);
 
+// POST request for creating a User.
+router.post('/user/login', user_controller.user_login_post);
+
 // GET request to delete User.
 router.get('/user/:id/delete', user_controller.user_delete_get);
 
