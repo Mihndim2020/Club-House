@@ -1,5 +1,7 @@
 var User = require('../models/user');
 
+const bcrypt = require('bcryptjs');
+
 const { body,validationResult } = require('express-validator');
 const res = require('express/lib/response');
 
@@ -47,28 +49,30 @@ exports.user_create_post = [
         }
         else {
             // Data from form is valid.
+            bcrypt.hash(req.body.password, 10, (err, hashedPassword) => {
 
             // Create a User object with escaped and trimmed data.
-            var user = new User(
-                {
-                    first_name: req.body.first_name,
-                    last_name: req.body.last_name,
-                    email: req.body.email,
-                    username: req.body.username,
-                    password: req.body.password
+                var user = new User(
+                    {
+                        first_name: req.body.first_name,
+                        last_name: req.body.last_name,
+                        email: req.body.email,
+                        username: req.body.username,
+                        password: hashedPassword
+                    });
+                user.save(function (err) {
+                    if (err) { return next(err); }
+                    // Successful - redirect to home page.
+                    res.redirect("/");
                 });
-            user.save(function (err) {
-                if (err) { return next(err); }
-                // Successful - redirect to home page.
-                res.redirect("/");
-            });
+             });
         }
     }
 ];
 
 // Handle User login on POST
 exports.user_login_post = function(req, res) {
-    res.send('Not implemented yet');
+    res.send('User login controller function is not implemented yet');
 };
 
 // Display User delete form on GET.

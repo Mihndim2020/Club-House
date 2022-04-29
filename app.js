@@ -1,6 +1,7 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+const bcrypt = require('bcryptjs');
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
@@ -37,10 +38,19 @@ passport.use(
       if (!user) {
         return done(null, false, { message: "Incorrect username" });
       }
-      if (user.password !== password) {
-        return done(null, false, { message: "Incorrect password" });
-      }
-      return done(null, user);
+      // if (user.password !== password) {
+      //   return done(null, false, { message: "Incorrect password" });
+      // }
+      // return done(null, user);
+      bcrypt.compare(password, user.password, (err, res) => {
+        if (res) {
+          // passwords match! log user in
+          return done(null, user)
+        } else {
+          // passwords do not match!
+          return done(null, false, { message: "Incorrect password" })
+        }
+      });  
     });
   })
 );
@@ -81,6 +91,11 @@ app.post(
     failureRedirect: "/"
   })
 );
+
+app.get("/log-out", (req, res) => {
+  req.logout();
+  res.redirect("/");
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
