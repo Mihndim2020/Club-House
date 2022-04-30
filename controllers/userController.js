@@ -2,7 +2,7 @@ var User = require('../models/user');
 
 const bcrypt = require('bcryptjs');
 
-const { body,validationResult } = require('express-validator');
+const { body, validationResult, check } = require('express-validator');
 const res = require('express/lib/response');
 
 exports.index = function(req, res) {
@@ -34,7 +34,17 @@ exports.user_create_post = [
         .isAlphanumeric().withMessage('Last name has non-alphanumeric characters.'),
     body('email').trim().isLength({ min: 1 }).escape().withMessage('email must be specified.'),
     body('username').trim().optional({ checkFalsy: true }),
-    body('password').trim().isLength({ min: 6 }).escape().withMessage('password must be specified.'),   
+    body('password').trim().isLength({ min: 6 }).escape().withMessage('password must be specified.'),
+    body('confirmPassword').trim().isLength({ min: 6 }).escape().withMessage('confirmed password must be specified.').custom(async (confirmPassword, {req}) => {
+        const password = req.body.password
+   
+        // If password and confirm password not same
+        // don't allow to sign up and throw error
+        if(password !== confirmPassword){
+          throw new Error('Passwords must be same');
+          console.log('password missmatch');
+        }
+      }),   
 
     // Process request after validation and sanitization.
     (req, res, next) => {

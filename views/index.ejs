@@ -8,7 +8,7 @@
     <h1><%= title %></h1>
     <%#  we can add a conditional statement to find out if the user is logged in or if the current user exist.  %>  
     <% if (currentUser) {%>
-    <p>Welcome to <%= currentUser.last_name %></p>
+    <p>Welcome to <%= currentUser.member_status %></p>
     <%}%>    
     <% if (user) {%>
       <h1>WELCOME BACK <%= user.username %></h1>
