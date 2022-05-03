@@ -2,6 +2,8 @@ var User = require('../models/user');
 
 const bcrypt = require('bcryptjs');
 
+var async = require('async');
+
 const { body, validationResult, check } = require('express-validator');
 const res = require('express/lib/response');
 
@@ -83,6 +85,46 @@ exports.user_create_post = [
 // Handle User login on POST
 exports.user_login_post = function(req, res) {
     res.send('User login controller function is not implemented yet');
+};
+
+// Handle User Join the club on POST
+exports.user_join_the_club_post = function(req, res, next) {
+
+    if (req.body.passcode === "112233" ){
+
+        async.series({
+            user: function (callback) {
+                User.findById(req.body.user).exec(callback)
+            }
+        }, function (err, results) {
+            if (err) {return next(err);}
+            else {
+                var updatedUser = new User(
+                    {
+                        first_name: results.user.first_name,
+                        last_name: results.user.last_name,
+                        email: results.user.email,
+                        username: results.user.username,
+                        password: results.user.password,
+                        posts: results.user.posts,
+                        member_status: "Member",
+                        _id: req.body.user
+                    }
+                ); 
+                
+            User.findByIdAndUpdate(req.body.user, updatedUser, {}, function (err, theuser) {
+                if (err) { return next(err); }
+                // Successful - redirect to genre detail page.
+                res.redirect("/");
+            });    
+            }
+        }
+        )
+    }
+    else {
+        res.redirect("/join-the-club");
+    }
+
 };
 
 // Display User delete form on GET.

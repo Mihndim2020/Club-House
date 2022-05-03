@@ -97,6 +97,10 @@ app.get("/log-out", (req, res) => {
   res.redirect("/");
 });
 
+app.get("/join-the-club", (req, res) => {
+  res.render('join_the_club', { title: 'Join the Club'});
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

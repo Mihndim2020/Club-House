@@ -8,13 +8,17 @@
     <h1><%= title %></h1>
     <%#  we can add a conditional statement to find out if the user is logged in or if the current user exist.  %>  
     <% if (currentUser) {%>
-    <p>Welcome to <%= currentUser.member_status %></p>
+    <p>Welcome to <%= currentUser._id %></p>
     <%}%>
     
-    <% if (currentUser && currentUser.member_status !==  ) {%>
-      <p>Welcome to <%= currentUser.member_status %></p>
-      <%}%> 
-
+    <% if (currentUser && currentUser.member_status !== "Member" ) {%>
+      <a href="/join-the-club">JOIN THE CLUB</a>    
+    <% } else { %>
+      <% if (currentUser && currentUser.member_status == "Member" ) {%>
+       <p>Welcome to the club <%= currentUser.first_name %></p>
+       <%}%> 
+    <%}%>
+      
     <% if (user) {%>
       <h1>WELCOME BACK <%= user.username %></h1>
       <a href="/log-out">LOG OUT</a>
