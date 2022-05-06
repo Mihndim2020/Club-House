@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    
+    <form action='' method="POST">
+      <input name="user" value = <%= currentUser._id %> type="text" hidden />
+      <label for="title">Title</label>
+      <input name="title" type="text" required /> <br/>
+      <label for="content">Message</label> <br/>
+      <textarea id="content" placeholder="Enter your message" name="content" style="width:60%" rows="5" required ></textarea> <br/>
+      <button type="submit"> Create message </button>
+    </form>
+
+    <% if (errors.length > 0) {%>
+      <ul>
+        <% for(let i = 0; i < errors.length; i++) {%>
+          <li><%= errors[i].msg %></li>
+        <% } %>
+      </ul>
+      <%}%>
+
+  </body>
+</html>
