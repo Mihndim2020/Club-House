@@ -5,8 +5,14 @@ var User = require('../models/user');
 const { body,validationResult } = require("express-validator");
 
 // Display list of all Posts.
-exports.post_list = function(req, res) {
-    res.send('NOT IMPLEMENTED: Post list');
+exports.post_list = function(req, res, next) {
+    Post.find()
+    .sort([['time_stamp', 'descending']])
+    .exec(function (err, message_list) {
+        if (err) { return next(err); }
+        // Successful, so render.
+        res.render("index", { title: 'Home Page', user: req.user, messages: Array.from(message_list) });
+    })
 };
 
 // Display detail page for a specific Post.

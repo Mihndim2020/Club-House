@@ -22,7 +22,7 @@
       
     <% if (user) {%>
       <h1>WELCOME BACK <%= user.username %></h1>
-      <a href="/log-out">LOG OUT</a>
+      <a href="/log-out">LOG OUT</a> <br/> <br/>
     <% } else { %>
     <h1>please log in</h1>
     <form action="/log-in" method="POST">
@@ -33,5 +33,39 @@
       <button>Log In</button>
     </form>
     <%}%>  
+
+    <%= messages[0].content %> <br/>
+
+      <% if (currentUser && currentUser.member_status === "Admin") {%>
+        <% for(let i = 0; i < messages.length; i++ ){ %>
+          <ul>
+            <li> Title: <%= messages[i].title %></li>
+            <li> Content: <%= messages[i].content %></li>
+            <li> Author: <%= messages[i].author %></li>
+            <li> Time Stamp: <%= messages[i].time_stamp %></li>
+            <a href="/members/post/create"> Delete this message </a>
+         </ul>
+        <% } %>
+        <%}%>
+  
+      <% if (currentUser && currentUser.member_status === "Member") {%>
+        <% for(let i = 0; i < messages.length; i++ ){ %>
+          <ul>
+            <li> Title: <%= messages[i].title %></li>
+            <li> Content: <%= messages[i].content %></li>
+            <li> Author: <%= messages[i].author %></li>
+            <li> Time Stamp: <%= messages[i].time_stamp %></li>
+          </ul>
+        <% } %>
+        <% } else {%>
+          <% for(let i = 0; i < messages.length; i++ ){ %>
+            <ul>
+              <li> Title: <%= messages[i].title %></li>
+              <li> Content: <%= messages[i].content %></li>
+            </ul>
+          <% } %>
+        <%}%> 
+
+
   </body>
 </html>

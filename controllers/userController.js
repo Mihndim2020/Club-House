@@ -1,4 +1,5 @@
 var User = require('../models/user');
+var Post = require('../models/post');
 
 const bcrypt = require('bcryptjs');
 
@@ -8,7 +9,13 @@ const { body, validationResult, check } = require('express-validator');
 const res = require('express/lib/response');
 
 exports.index = function(req, res) {
-    res.render("index", { title: 'Home Page', user: req.user });
+    Post.find()
+    .sort([['time_stamp', 'descending']])
+    .exec(function (err, messages) {
+        if (err) { return next(err); }
+        // Successful, so render.
+        res.render("index", { title: 'Home Page', user: req.user, messages: messages });
+    })
 };
 
 // Display list of all users.
