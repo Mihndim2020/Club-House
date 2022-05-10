@@ -22,6 +22,9 @@ router.post('/user/login', user_controller.user_login_post);
 // POST request for a User Joining the club.
 router.post('/user/join-the-club', user_controller.user_join_the_club_post);
 
+// POST request for a User becoming an Admin.
+router.post('/user/become-admin', user_controller.user_become_admin_post);
+
 // GET request to delete User.
 router.get('/user/:id/delete', user_controller.user_delete_get);
 
@@ -47,6 +50,9 @@ router.get('/post/create', post_controller.post_create_get);
 
 // POST request for creating Post.
 router.post('/post/create', post_controller.post_create_post);
+
+// POST request to delete Message.
+router.post('/message/delete', post_controller.message_delete_post);
 
 // GET request to delete Post.
 router.get('/post/:id/delete', post_controller.post_delete_get);

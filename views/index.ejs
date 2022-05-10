@@ -10,12 +10,16 @@
     <% if (currentUser) {%>
     <p>Welcome to <%= currentUser.username %></p>
     <a href="/members/post/create"> Create new new message </a> 
-    <%}%>
+    <%}%> <br/> <br/>
+
+    <% if (currentUser && currentUser.member_status !== "Admin" ) {%>
+      <a href="/become-admin">BECOME AN ADMIN</a>
+      <%}%>      
     
-    <% if (currentUser && currentUser.member_status !== "Member" ) {%>
+    <% if ((currentUser && currentUser.member_status !== "Member") && (currentUser && currentUser.member_status !== "Admin") ) {%>
       <a href="/join-the-club">JOIN THE CLUB</a>    
     <% } else { %>
-      <% if (currentUser && currentUser.member_status == "Member" ) {%>
+      <% if (currentUser && currentUser.member_status == "Member" || currentUser && currentUser.member_status == "Admin" ) {%>
        <p>Welcome to the club <%= currentUser.first_name %></p>
        <%}%> 
     <%}%>
@@ -24,7 +28,7 @@
       <h1>WELCOME BACK <%= user.username %></h1>
       <a href="/log-out">LOG OUT</a> <br/> <br/>
     <% } else { %>
-    <h1>please log in</h1>
+    <h1>Please log in</h1>
     <form action="/log-in" method="POST">
       <label for="username">Username</label>
       <input name="username" placeholder="username" type="text" />
@@ -34,8 +38,6 @@
     </form>
     <%}%>  
 
-    <%= messages[0].content %> <br/>
-
       <% if (currentUser && currentUser.member_status === "Admin") {%>
         <% for(let i = 0; i < messages.length; i++ ){ %>
           <ul>
@@ -43,7 +45,11 @@
             <li> Content: <%= messages[i].content %></li>
             <li> Author: <%= messages[i].author %></li>
             <li> Time Stamp: <%= messages[i].time_stamp %></li>
-            <a href="/members/post/create"> Delete this message </a>
+            <form action="/members/message/delete" method="POST">
+              <input name="message_id" value = <%= messages[i]._id %> type="text" hidden  />
+              <button>Delete this message</button>
+            </form>
+            <%#  Deleting the message should be like a form where you pass in the _id if the message to be deleted  %> 
          </ul>
         <% } %>
         <%}%>
@@ -58,11 +64,13 @@
           </ul>
         <% } %>
         <% } else {%>
+          <% if ((currentUser && currentUser.member_status !== "Member" && currentUser && currentUser.member_status !== "Admin") || (!currentUser) ) {%>  
           <% for(let i = 0; i < messages.length; i++ ){ %>
             <ul>
               <li> Title: <%= messages[i].title %></li>
               <li> Content: <%= messages[i].content %></li>
             </ul>
+          <% } %>
           <% } %>
         <%}%> 
 

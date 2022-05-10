@@ -134,7 +134,46 @@ exports.user_join_the_club_post = function(req, res, next) {
 
 };
 
-// Display User delete form on GET.
+// User become an Admin on POST.
+exports.user_become_admin_post = function(req, res, next) {
+
+    if (req.body.passcode === "1234567" ){
+
+        async.series({
+            user: function (callback) {
+                User.findById(req.body.user).exec(callback)
+            }
+        }, function (err, results) {
+            if (err) {return next(err);}
+            else {
+                var updatedUser = new User(
+                    {
+                        first_name: results.user.first_name,
+                        last_name: results.user.last_name,
+                        email: results.user.email,
+                        username: results.user.username,
+                        password: results.user.password,
+                        posts: results.user.posts,
+                        member_status: "Admin",
+                        _id: req.body.user
+                    }
+                ); 
+                
+            User.findByIdAndUpdate(req.body.user, updatedUser, {}, function (err, theuser) {
+                if (err) { return next(err); }
+                // Successful - redirect to genre detail page.
+                res.redirect("/");
+            });    
+            }
+        }
+        )
+    }
+    else {
+        res.redirect("/become-admin");
+    }
+
+};
+
 exports.user_delete_get = function(req, res) {
     res.send('NOT IMPLEMENTED: User delete GET');
 };

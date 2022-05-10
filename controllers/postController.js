@@ -78,6 +78,15 @@ exports.post_create_post = [
     }    
 ];
 
+// Handle Message delete on POST.
+exports.message_delete_post = function(req, res, next) {
+    Post.findByIdAndRemove(req.body.message_id, function deleteMessage(err) {
+        if (err) { return next(err); }
+        // Success - got to books list.
+        res.redirect('/');
+    });
+};
+
 // Display Post delete form on GET.
 exports.post_delete_get = function(req, res) {
     res.send('NOT IMPLEMENTED: Post delete GET');

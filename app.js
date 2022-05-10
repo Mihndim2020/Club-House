@@ -101,6 +101,10 @@ app.get("/join-the-club", (req, res) => {
   res.render('join_the_club', { title: 'Join the Club'});
 });
 
+app.get("/become-admin", (req, res) => {
+  res.render('become-admin', { title: 'Become an Admin'});
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+
+    <h1>Enter your code to update your status to an Admin</h1>
+    
+    <form action="/members/user/become-admin/" method="POST">
+      <input name="user" value = <%= currentUser._id %> type="text" hidden />
+      <label for="username">Username</label>
+      <input name="username" value = <%= currentUser.username %> type="text" readonly />
+      <label for="password">Passcode</label>
+      <input name="passcode" type="password" />
+      <button>Become an Admin</button>
+    </form>
+
+  </body>
+</html>
