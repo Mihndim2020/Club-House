@@ -5,3 +5,13 @@ This is  an exclusive club-house where your members can write anonymous posts. I
 > Node js 
 > Express js 
 > EJS
+- Major languages
+  - JavaScript
+  - HTML5
+  - CSS3
+- Frameworks
+  - Express.js
+  - Node.js
+- Technologies used
+  - Git
+  - GitHub
