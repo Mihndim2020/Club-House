@@ -21,3 +21,5 @@ This is  an exclusive club-house where your members can write anonymous posts. I
 ## Live Demo
 
 [Live Demo Link](https://livedemo.com)
+
+## Getting Started
