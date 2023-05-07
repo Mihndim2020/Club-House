@@ -23,3 +23,5 @@ This is  an exclusive club-house where your members can write anonymous posts. I
 [Live Demo Link](https://livedemo.com)
 
 ## Getting Started
+- Use npm install to install dependencies
+- Run npm run start to run the project
