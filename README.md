@@ -25,3 +25,5 @@ This is  an exclusive club-house where your members can write anonymous posts. I
 ## Getting Started
 - Use npm install to install dependencies
 - Run npm run start to run the project
+
+### Usage
