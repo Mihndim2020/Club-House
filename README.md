@@ -27,3 +27,4 @@ This is  an exclusive club-house where your members can write anonymous posts. I
 - Run npm run start to run the project
 
 ### Usage
+- Enter  npm start in the terminal after installing dependencies
