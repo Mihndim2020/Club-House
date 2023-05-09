@@ -30,3 +30,4 @@ This is  an exclusive club-house where your members can write anonymous posts. I
 - Enter  npm start in the terminal after installing dependencies
 
 ### Run tests
+- Not yet available for this project
