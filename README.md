@@ -28,3 +28,5 @@ This is  an exclusive club-house where your members can write anonymous posts. I
 
 ### Usage
 - Enter  npm start in the terminal after installing dependencies
+
+### Run tests
