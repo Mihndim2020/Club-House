@@ -31,3 +31,5 @@ This is  an exclusive club-house where your members can write anonymous posts. I
 
 ### Run tests
 - Not yet available for this project
+
+### Deployment
