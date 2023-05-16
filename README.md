@@ -51,3 +51,4 @@ Feel free to check the [issues page](../../issues/)
 - MDN
 - FreeCodeCamp
 - Microverse community
+- W3Schools
