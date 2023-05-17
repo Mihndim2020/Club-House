@@ -52,3 +52,4 @@ Feel free to check the [issues page](../../issues/)
 - FreeCodeCamp
 - Microverse community
 - W3Schools
+- Tunga Academy
