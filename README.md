@@ -56,3 +56,5 @@ Feel free to check the [issues page](../../issues/)
 - Udemy
 
 ## 📝 License
+
+This project is [MIT](./MIT.md) licensed.
