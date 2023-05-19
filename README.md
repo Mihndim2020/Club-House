@@ -54,3 +54,5 @@ Feel free to check the [issues page](../../issues/)
 - W3Schools
 - Tunga Academy
 - Udemy
+
+## 📝 License
