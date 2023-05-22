@@ -52,7 +52,6 @@ Feel free to check the [issues page](../../issues/)
 - FreeCodeCamp
 - Microverse community
 - W3Schools
-- Tunga Academy
 
 ## 📝 License
 This project is [MIT](./MIT.md) licensed.
